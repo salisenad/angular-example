@@ -1,0 +1,76 @@
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-11 mt-4">
+            <table class="table table-bordered table-hover">
+                <thead class="bg-employee">
+                <td class="font-weight-bold" colspan="7"><i class="fas fa-users ml-3 mr-3 text-primary "></i>Employees
+                    List
+                </td>
+                <td class="font-weight-bold" colspan="2"><i class="fas fa-plus mr-2 text-primary"></i><a
+                        class="font-weight-bold  text-dark " href="#" data-toggle="modal"
+                        data-target=".bd-example-modal-lg">Add
+                    Employee</a></td>
+                </thead>
+                <thead>
+                <td colspan="9">
+                    <form class="form-inline">
+                        <span><i class="fas fa-search mr-3 ml-3 text-primary"></i></span>
+                        <input class="form-control" name="searchInput" placeholder="Search" #searchInput="ngModel"
+                               [(ngModel)]="searchText" style="width: 20%;">
+                        <button class="btn btn-outline-primary" (click)="searchText=''">X</button>
+                    </form>
+                </td>
+                </thead>
+                <thead>
+                <tr style="max-height: 10px;">
+                    <th scope="col" class="" width="4%"></th>
+                    <th class="text-primary">Id Nr.</th>
+                    <th class="text-primary">Name</th>
+                    <th class="text-primary">Gender</th>
+                    <th class="text-primary">Age</th>
+                    <th class="text-primary">Phone</th>
+                    <th class="text-primary">Position</th>
+                    <th class="text-primary scrollbar-primary ">Description</th>
+                    <th class="text-primary">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let emp of list | paginate: { itemsPerPage: 6, currentPage: p } ">
+                    <tr *ngIf="filterCondition(emp)">
+                        <th scope="row" class="text-center"><i class="fas fa-user"></i></th>
+                        <td>{{ emp.identification }}</td>
+                        <td>{{ emp.firstName }} {{emp.lastName}}</td>
+                        <td>{{ emp.gender }}</td>
+                        <td>{{ emp.age }}</td>
+                        <td>{{ emp.phone }}</td>
+                        <td width="12%">{{ emp.position }}</td>
+                        <td style="max-width:50px;">
+                            <div class="scrollable">{{ emp.description}}</div>
+                        </td>
+                        <td width="12%" class="text-primary text-center"><a class="btn txt-danger" (click)="onEdit(emp)"
+                                                                            data-toggle="modal"
+                                                                            data-target=".bd-example-modal-lg"><i
+                                class="fa fa-edit"></i></a>
+                            <a class="btn text-danger" (click)="onDelete(emp.id)" data-toggle="tooltip"
+                               data-placement="top" title="Delete this employeer"><i class="fa fa-trash"> </i></a></td>
+                    </tr>
+                </ng-container>
+                </tbody>
+            </table>
+            <pagination-controls class="myPagination text-center mt-4"
+                                 previousLabel="Previous"
+                                 nextLabel="Next"
+                                 (pageChange)="p = $event"
+                                 maxSize="12"
+                                 responsive="true">
+            </pagination-controls>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

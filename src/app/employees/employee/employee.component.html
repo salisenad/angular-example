@@ -1,0 +1,104 @@
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content p-4">
+            <div class="modal-header">
+                <h5 class="modal-title text-primary" id="exampleModalLongTitle"> Submit Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetModal(form)">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="mt-4" #form="ngForm" autocomplete="off" (submit)="onSubmit(form)" method="post">
+                <div class="cntainer-fluid">
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
+                                <input type="number" name="identification" #identification="ngModel"
+                                       [(ngModel)]="service.formData.identification"
+                                       class="form-control" placeholder="Identification Number" required>
+                                <div *ngIf="identification.invalid && identification.touched" class="validation-error">
+                                    This field
+                                    required *
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input name="firstName" #firstName="ngModel" [(ngModel)]="service.formData.firstName"
+                                       class="form-control" placeholder="First Name" required>
+                                <div *ngIf="firstName.invalid && firstName.touched" class="validation-error">This field
+                                    required *
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input name="lastName" #lastName="ngModel" [(ngModel)]="service.formData.lastName"
+                                       class="form-control"
+                                       placeholder="Last Name" required>
+                                <div *ngIf="lastName.invalid && lastName.touched" class="validation-error">This field
+                                    required *
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <select name="gender" #gender="ngModel" [(ngModel)]="service.formData.gender"
+                                        class="form-control"
+                                        placeholder="Gender" required>
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                    <div *ngIf="gender.invalid && gender.touched" class="validation-error">This field
+                                        required *
+                                    </div>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="number" name="age" min="0" max="100" #age="ngModel"
+                                       [(ngModel)]="service.formData.age"
+                                       class="form-control" placeholder="Age" required>
+                                <div *ngIf="age.invalid && age.touched" class="validation-error">This field required *
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="number" name="phone" min="0" #phone="ngModel"
+                                       [(ngModel)]="service.formData.phone" class="form-control" placeholder="Phone">
+                            </div>
+
+                            <div class="form-group">
+                                <select name="position" #position="ngModel" [(ngModel)]="service.formData.position"
+                                        class="form-control" required>
+                                    <option value="" disabled selected>Select position</option>
+                                    <option value="Software Developer">Software Developer</option>
+                                    <option value="Menager">Menager</option>
+                                    <option value="Intern">Intern</option>
+                                    <div *ngIf="gender.invalid && gender.touched" class="validation-error">This field
+                                        required *
+                                    </div>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea name="description" #description="ngModel" [(ngModel)]="service.formData.description"
+                                class="form-control" placeholder="Description" cols="20" rows="1" required></textarea>
+                                <div *ngIf="description.invalid && description.touched" class="validation-error">This
+                                    field required *
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button (click)="resetModal(form)" type="button" class="btn btn-danger btn-lg text-left mr-2  "
+                            data-dismiss="modal">Close
+                    </button>
+                    <button type="submit" [disabled]="form.invalid"
+                            class="btn btn-lg btn-primary btn-primary save-details "
+                            onclick="$('.modal').modal('hide')"><i class="fas fa-plus"></i> Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
